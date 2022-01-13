@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/css/mdb.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>
+    <script type="text/javascript" lang="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.1/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <title>Cafe Go</title>
+
+
+
+</head>
+
+<body>
+    <div class="w3-top">
+      <div class="w3-row w3-padding w3-black">
+        <div class="w1-col s3" style="text-align: center;">
+            <span class="w3-center" style="font-size:40px">Cafe Go</span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="w3-row w3-center w3-padding-48">
+        <br><br><br>
+        <div id="displayMap"></div>
+    </div>
+    <div>
+        請輸入出發地：<input type="text" name="" id="origin">
+        請輸入目的地：<input type="text" name="" id="destination">
+        <button id="changeSrc">確認</button>
+        <br><br><br>
+    </div>
+    <script type="text/javascript">
+        
+        changeSrc.onclick = function(){
+            var ori = document.getElementById("origin").value;
+            var des = document.getElementById("destination").value;
+            var src = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyAgrWQ_QPVvJKovTsnGsD3mXh4OFtlv4wE&mode=transit&origin=" + ori +"&destination=" + des;
+            document.getElementById("displayMap").innerHTML = '<iframe src="' + src + '" width="450" height="450"></iframe>'
+        };
+
+    </script>
+<div class="filter">
+    <h5 class="w3-center "><span class="w3-tag w3-wide">Select Features</span></h5>
+    <div class="multi-features">
+        <div class="w3-row w3-center">
+                <br>
+                <p><b>是否限時</b></p>
+                <select id="time_limit">
+                    <option value="0" selected>無限制</option>
+                    <option value="1" >不限時</option>
+                    <option value="2" >平日限時</option>
+                    <option value="3" >假日限時</option>
+                    <option value="4" >平假日皆限時</option>
+                </select>
+                <br><br>
+        </div>
+        <div class="w3-row w3-center">
+                <p><b>支付方式</b></p>
+                <select id="payment">
+                    <option value="0" selected>無限制</option>
+                    <option value="1" >只收現金</option>
+                    <option value="2" >現金+信用卡</option>
+                    <option value="3" >現金+電子支付</option>
+                    <option value="4" >現金+電子支付+信用卡</option>
+                </select>
+                <br><br>
+        </div>
+        <div class="w3-row w3-center">
+                <p><b>可否接受預約</b></p>
+                <select id="reservation">
+                    <option value="0" selected>無限制</option>
+                    <option value="1">只開放現場候位</option>
+                    <option value="2" >可事先預約</option>
+                </select>
+                <br><br>
+
+        </div>
+        <div class="w3-row w3-center">
+                <p><b>Google 評分在幾星以上</b></p>
+                <select id="try" class="try">
+                    <option value="4" >4</option>
+                    <option value="3" selected>3</option>
+                    <option value="2">2</option>
+                    <option value="1" >1</option>
+                </select>
+                <br><br>
+
+        </div>
+        <div class="w3-row w3-center">
+                <p><b>排序條件</b></p>
+                <select id="order" class="order">
+                    <option value="4" selected>Google 評分</option>
+                    <option value="3" >正評星等</option>
+                    <option value="2">Wi-fi穩定度</option>
+                    <option value="1" >等候時間</option>
+                </select>
+                <br><br>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+    <div class="binary-features w3-padding-12">
+        <p><b>其他特徵</b></p>
+        <div class="checkbox">
+            <label><input type="checkbox" id="wifi"  value="wifi" class="bi" /> Wi-Fi　</label>
+            <label><input type="checkbox" id="vegetarian" value="vegetarian" class="bi" /> 提供素食餐點　</label>
+            <label><input type="checkbox" id="socket"  value="socket" class="bi" /> 有插座　</label>
+            <label><input type="checkbox" id="smoke"  value="smoke" class="bi" /> 可抽菸　</label>
+            <button onclick="checkAll()">全選</button>
+            <button onclick="clearAll()">全部清除</button>
+        </div>
+
+    </div>
+    <div class="w3-padding-12">
+    <br>
+      <button id="ok">
+        OK
+      </button>
+    </div>
+
+  <div class="result">
+    <div class="justify-content-center" style="width: 100%; padding: 0 8rem">
+
+
+    <div class="p-3" style="width: 100hw; padding: 1rem">
+        <br><br>
+        <h5 class="w3-center w3-padding-12"><span class="w3-tag w3-wide">Coffee Shops Results</span></h5>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>咖啡店名</th>
+                    <th>Google 星等</th>
+                    <th>正評星等</th>
+                    <th>安靜度</th>
+                    <th>寬敞度</th>
+                    <th>衛生度</th>
+                    <th>服務</th>
+                    <th>態度</th>
+                    <th>明亮度</th>
+                    <th>等候時間</th>
+                    <th>Wi-fi穩定度</th>
+                </tr>
+            </thead>
+            <tbody id="showFilter"></tbody>
+        </table>
+        <br><br>
+    </div>
+    </div>
+</div>
+
+
+</body>
