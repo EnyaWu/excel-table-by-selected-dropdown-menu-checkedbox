@@ -48,7 +48,7 @@
         changeSrc.onclick = function(){
             var ori = document.getElementById("origin").value;
             var des = document.getElementById("destination").value;
-            var src = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyAgrWQ_QPVvJKovTsnGsD3mXh4OFtlv4wE&mode=transit&origin=" + ori +"&destination=" + des;
+            var src = "https://www.google.com/maps/embed/v1/directions?key=YOUR_API_KEY&mode=transit&origin=" + ori +"&destination=" + des;
             document.getElementById("displayMap").innerHTML = '<iframe src="' + src + '" width="450" height="450"></iframe>'
         };
 
